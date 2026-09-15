@@ -1,6 +1,6 @@
 # CarPlay IPTV 自动更新订阅
 
-这是一个完全免费的 IPTV 播放列表聚合项目。GitHub Actions 每 6 小时读取 `sources.json` 中启用的公开频道源，去重后生成 `carplay.m3u`，可直接作为 APTV 的远程订阅。
+这是一个“小而精”的免费 IPTV 播放列表。它不再塞入大量地方台，而是保留纪录片、自然、汽车、户外、搞笑、美食旅行、经典影视、少儿和亚洲资讯等精选频道，可直接作为 APTV 的远程订阅。
 
 ## APTV 订阅地址
 
@@ -13,27 +13,33 @@ https://raw.githubusercontent.com/BinDoooo/carplay-iptv/main/carplay.m3u
 ## 自动更新
 
 - 默认每 6 小时运行一次，也可在仓库的 **Actions → Update IPTV playlist → Run workflow** 手动运行。
-- 只有播放列表内容变化时才会自动提交，避免无意义的提交记录。
-- 单个来源暂时失效不会阻止其他来源更新；如果所有来源均失效，脚本会失败并保留上一版订阅。
+- 每次更新都会实际读取 HLS 清单和首个视频片段，只写入当时通过健康检查的频道。
+- 多数频道配置了备用 CDN，主地址失效时自动切换。
+- 只有播放列表内容变化时才会提交；如果可用频道少于安全阈值，则保留上一版订阅。
 - 不需要服务器、域名、数据库或付费服务。
 
 ## 自定义频道源
 
-编辑 `sources.json`，按下面的格式增加、关闭或删除来源：
+编辑 `sources.json`，按下面的格式增加、删除频道或设置备用地址：
 
 ```json
 {
-  "sources": [
+  "minimum_channels": 1,
+  "channels": [
     {
-      "name": "示例频道源",
-      "url": "https://example.com/playlist.m3u",
-      "enabled": true
+      "name": "示例频道",
+      "tvg_id": "Example.tv",
+      "group": "精选·示例",
+      "urls": [
+        "https://example.com/primary.m3u8",
+        "https://example.com/fallback.m3u8"
+      ]
     }
   ]
 }
 ```
 
-只支持公开的 `http://` 或 `https://` M3U/M3U8 播放列表地址。请确保你有权访问和使用所添加的频道源。
+只支持公开的 `http://` 或 `https://` HLS 播放列表。地址按顺序尝试，第一个通过清单与视频片段检查的地址会写入最终订阅。
 
 ## 本地生成
 
@@ -46,13 +52,13 @@ python3 scripts/build_playlist.py
 可选参数：
 
 ```bash
-python3 scripts/build_playlist.py --config sources.json --output carplay.m3u --timeout 25
+python3 scripts/build_playlist.py --config sources.json --output carplay.m3u --timeout 8 --workers 8
 ```
 
 ## 文件说明
 
-- `sources.json`：上游公开频道源配置。
-- `scripts/build_playlist.py`：下载、解析、校验和去重脚本。
+- `sources.json`：精选频道、分类和备用地址配置。
+- `scripts/build_playlist.py`：并发健康检查与自动备用源选择脚本。
 - `carplay.m3u`：供 APTV 订阅的最终播放列表。
 - `.github/workflows/update.yml`：定时与手动更新任务。
 

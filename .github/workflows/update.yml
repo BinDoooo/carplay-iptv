@@ -1,0 +1,42 @@
+name: Update IPTV playlist
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-iptv-playlist
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.x"
+
+      - name: Build playlist
+        run: python3 scripts/build_playlist.py
+
+      - name: Commit updated playlist
+        run: |
+          if git diff --quiet -- carplay.m3u; then
+            echo "Playlist is already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add carplay.m3u
+          git commit -m "chore: update IPTV playlist"
+          git push

@@ -1,0 +1,19 @@
+{
+  "sources": [
+    {
+      "name": "中国大陆公开频道",
+      "url": "https://iptv-org.github.io/iptv/countries/cn.m3u",
+      "enabled": true
+    },
+    {
+      "name": "中国香港公开频道",
+      "url": "https://iptv-org.github.io/iptv/countries/hk.m3u",
+      "enabled": true
+    },
+    {
+      "name": "中国台湾公开频道",
+      "url": "https://iptv-org.github.io/iptv/countries/tw.m3u",
+      "enabled": true
+    }
+  ]
+}

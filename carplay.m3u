@@ -9,14 +9,10 @@ http://74.91.26.218:82/live/cctv10hd.m3u8
 https://english-livebkali.cgtn.com/live/doccgtn.m3u8
 #EXTINF:-1 tvg-id="BBCEarth.uk" group-title="精选·纪录片",BBC Earth
 https://aegis-cloudfront-1.tubi.video/bb1fc6ad-9948-42ea-aaf3-20acfcdeecac/playlist.m3u8
-#EXTINF:-1 tvg-id="LoveNature.ca" group-title="精选·自然",Love Nature
-https://amg01515-amg01515c26-xumo-us-4765.playouts.now.amagi.tv/playlist.m3u8
 #EXTINF:-1 tvg-id="WildEarth.za" group-title="精选·自然",WildEarth 野生动物直播
 https://dqga3jatxofgx.cloudfront.net/WildEarth.m3u8
 #EXTINF:-1 tvg-id="HistoryHit.uk" group-title="精选·纪录片",History Hit
 https://lds-timeline-rakuten.amagi.tv/playlist.m3u8
-#EXTINF:-1 tvg-id="TopGear.uk" group-title="精选·汽车",Top Gear
-https://d1daq1khzqxpku.cloudfront.net/playlist.m3u8
 #EXTINF:-1 tvg-id="RedBullTV.at" group-title="精选·运动户外",Red Bull TV
 https://d1hlbgn3fph0cz.cloudfront.net/playlist.m3u8
 #EXTINF:-1 tvg-id="FailArmy.us" group-title="精选·轻松搞笑",FailArmy
@@ -24,9 +20,7 @@ https://failarmy-international-au.samsung.wurl.tv/playlist.m3u8
 #EXTINF:-1 tvg-id="PeopleAreAwesome.us" group-title="精选·极限达人",People Are Awesome
 https://jukin-peopleareawesome-2-es.samsung.wurl.tv/playlist.m3u8
 #EXTINF:-1 tvg-id="Tastemade.us" group-title="精选·美食旅行",Tastemade 美食
-https://pb-rlo4if9lnjthw.akamaized.net/Tastemade.m3u8
-#EXTINF:-1 tvg-id="TastemadeTravel.us" group-title="精选·美食旅行",Tastemade Travel
-https://d6ef3usc6d9cl.cloudfront.net/Tastemade_Travel.m3u8
+https://tastemade-tdint-rakuten.amagi.tv/playlist.m3u8
 #EXTINF:-1 tvg-id="FilmRiseClassicTV.us" group-title="精选·经典影视",FilmRise Classic TV
 https://d2tv4k5moji5m7.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-lu4pzh9l4b57p/master.m3u8
 #EXTINF:-1 tvg-id="PBSKids.us" group-title="精选·少儿",PBS Kids
